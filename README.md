@@ -1,2 +1,3 @@
-justinkropp
-----
+I'm Justin Kropp, a graphic designer. Most of my work these days sits firmly in the product design bucket and lives exclusively on screens — big and small. I'm currently a _Staff Product Designer_ at [Vercel](https://vercel.com/design). Previously, I held Staff Product Design roles at Modern Treasury, Okta, Mozilla, and Automattic.
+
+I maintain a small design practice, producing self-initiated work that is primarily auto-ethnographic in approach, connecting personal experiences with the wider world through an art and design lens. Themes that wander through this work include: design systems, typography, the written word, form, nature, music, and emotion.
