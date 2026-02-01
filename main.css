@@ -1,3 +1,17 @@
+@font-face {
+  font-family: "Untitled Serif";
+  src: url("fonts/test-untitled-serif-regular.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Untitled Serif Italic";
+  src: url("fonts/test-untitled-serif-regular-italic.woff2") format("woff2");
+}
+:root {
+  --black: rgba(0, 0, 0, 0.90);
+  --serif: "Untitled Serif";
+  --serif-itlaic: "Untitled Serif Italic";
+}
+
 /*
   Josh's Custom CSS Reset
   https://www.joshwcomeau.com/css/custom-css-reset/
@@ -30,7 +44,6 @@ input, button, textarea, select {
 }
 
 p, h1, h2, h3, h4, h5, h6 {
-  font-family: Helvetica, sans-serif;
   overflow-wrap: break-word;
 }
 
@@ -55,14 +68,20 @@ body .wrapper {
   display: flex;
   flex-direction: column;
   gap: 1.25em;
-  max-width: 48em;
+  max-width: 45em;
 }
 body .wrapper p {
-  font-size: 1.25rem;
-  line-height: 1.35;
+  font-family: var(--serif);
+  font-size: 1.35rem;
+  line-height: 1.5;
   color: #aaa;
 }
 body .wrapper p strong {
   font-weight: normal;
   color: #fff;
-}/*# sourceMappingURL=main.css.map */
+}
+body .wrapper p em {
+  font-family: var(--serif-itlaic);
+}
+
+/*# sourceMappingURL=main.css.map */
