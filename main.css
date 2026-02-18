@@ -1,15 +1,15 @@
 @font-face {
-  font-family: "Untitled Serif";
-  src: url("fonts/test-untitled-serif-regular.woff2") format("woff2");
+  font-family: "Scala Serif";
+  src: url("fonts/ScalaWeb.woff") format("woff");
 }
 @font-face {
-  font-family: "Untitled Serif Italic";
-  src: url("fonts/test-untitled-serif-regular-italic.woff2") format("woff2");
+  font-family: "Scala Serif Italic";
+  src: url("fonts/ScalaWeb-Ita.woff") format("woff");
 }
 :root {
   --black: rgba(0, 0, 0, 0.90);
-  --serif: "Untitled Serif";
-  --serif-itlaic: "Untitled Serif Italic";
+  --serif: 'Scala Serif';
+  --serif-itlaic: 'Scala Serif Italic';
 }
 
 /*
