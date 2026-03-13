@@ -1,24 +1,38 @@
 // Fonts
 
 @font-face {
-  font-family: 'Scala Serif';
-  src:
-    url('fonts/ScalaWeb.woff') format('woff');
+    font-family: "Scala Serif";
+    src: url("fonts/ScalaWeb.woff") format("woff");
 }
 
 @font-face {
-  font-family: 'Scala Serif Italic';
-  src:
-    url('fonts/ScalaWeb-Ita.woff') format('woff');
+    font-family: "Scala Serif Italic";
+    src: url("fonts/ScalaWeb-Ita.woff") format("woff");
 }
 
+@font-face {
+    font-family: "Scala Serif SC";
+    src: url("fonts/ScalaScWeb.woff") format("woff");
+}
+
+@font-face {
+    font-family: "Scala Sans";
+    src: url("fonts/ScalaSansWebPro.woff") format("woff");
+}
 
 // Variables
 
 :root {
-  --black: rgba(0, 0, 0, 0.90);
-  --serif: 'Scala Serif';
-  --serif-itlaic: 'Scala Serif Italic';
+    --black: rgba(0, 0, 0, 0.9);
+    --serif: "Scala Serif";
+    --serif-italic: "Scala Serif Italic";
+    --serif-sc: "Scala Serif SC";
+    --sans: "Scala Sans";
+}
+
+::selection {
+    background-color: #fff; /* Background of selection */
+    color: #000; /* Text color of selection */
 }
 
 /*
@@ -26,47 +40,82 @@
   https://www.joshwcomeau.com/css/custom-css-reset/
 */
 
-*, *::before, *::after {
-  box-sizing: border-box;
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
 }
 
 * {
-  margin: 0;
+    margin: 0;
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  html {
-    interpolate-size: allow-keywords;
-  }
+    html {
+        interpolate-size: allow-keywords;
+    }
 }
 
 body {
-  line-height: 1.5;
-  -webkit-font-smoothing: antialiased;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
 }
 
-img, picture, video, canvas, svg {
-  display: block;
-  max-width: 100%;
+img,
+picture,
+video,
+canvas,
+svg {
+    display: block;
+    max-width: 100%;
 }
 
-input, button, textarea, select {
-  font: inherit;
+input,
+button,
+textarea,
+select {
+    font: inherit;
 }
 
-p, h1, h2, h3, h4, h5, h6 {
-  overflow-wrap: break-word;
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    overflow-wrap: break-word;
 }
 
-p {
-  text-wrap: pretty;
-}
-h1, h2, h3, h4, h5, h6 {
-  text-wrap: balance;
+p,
+li {
+    font-family: var(--serif);
+    text-wrap: pretty;
+    font-size: 1.2rem;
+    line-height: 1;
+    color: #aaa;
 }
 
-#root, #__next {
-  isolation: isolate;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    text-wrap: balance;
+    font-size: 1.2rem;
+    font-weight: normal;
+    line-height: 1;
+    color: #fff;
+}
+
+strong {
+    font-weight: normal;
+}
+
+#root,
+#__next {
+    isolation: isolate;
 }
 
 // Base
@@ -78,19 +127,82 @@ body {
     .wrapper {
         display: flex;
         flex-direction: column;
-        gap: 1.25em;
-        max-width: 45em;
-        p {
-            font-family: var(--serif);
-            font-size: 1.35rem;
-            line-height: 1.5;
-            color: #aaa;
-        strong {
-            font-weight: normal;
-            color: #fff;
+        gap: 4em;
+        max-width: 40em;
+        section {
+            display: flex;
+            flex-direction: column;
+            gap: 1.25em;
+            p {
+                font-family: var(--serif);
+                line-height: 1.5;
+                color: #aaa;
+                strong {
+                    font-weight: normal;
+                    color: #fff;
+                }
+                em {
+                    font-family: var(--serif-italic);
+                }
             }
-        em {
-            font-family: var(--serif-itlaic);
+        }
+        .timeline {
+            header {
+                margin: 0 0 1em 0;
+                h2 {
+                    font-family: var(--serif-sc);
+                    text-transform: lowercase;
+                    letter-spacing: 0.1em;
+                }
+            }
+            ul {
+                list-style: none;
+                display: flex;
+                flex-direction: column;
+                padding: 0;
+                li {
+                    display: flex;
+                    align-items: baseline;
+                    padding: 0.25em 0;
+                    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+                    &:last-child {
+                        border-bottom: none;
+                    }
+                    h2 {
+                        width: 100%;
+                        white-space: nowrap;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                    }
+                    h3 {
+                        width: 100%;
+                        font-family: var(--serif-italic);
+                        font-size: 1.1rem;
+                        white-space: nowrap;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        color: #aaa;
+                    }
+
+                    p {
+                        width: 100%;
+                        font-family: var(--sans);
+                        font-size: 1.1rem;
+                        font-variant-numeric: oldstyle-nums;
+                        text-align: right;
+                        color: #aaa;
+                    }
+                }
+            }
+        }
+        .enrichment {
+            header {
+                margin: 0 0 1em 0;
+                h2 {
+                    font-family: var(--serif-sc);
+                    text-transform: lowercase;
+                    letter-spacing: 0.1em;
+                }
             }
         }
     }
