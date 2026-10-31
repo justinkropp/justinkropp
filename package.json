@@ -10,5 +10,8 @@
     "browser-sync": "^3.0.2",
     "npm-run-all": "^4.1.5",
     "sass": "^1.69.5"
+  },
+  "dependencies": {
+    "geist": "^1.9.0"
   }
 }

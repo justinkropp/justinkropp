@@ -22,7 +22,7 @@
                     nature — drawing from my own experiences and connecting them
                     to the wider world through art and design. The things that
                     keep pulling me back: design systems, typography, the
-                    written word, form, nature, music, and emotion.
+                    written word, form, nature, music, and adventure.
                 </p>
             </section>
             <section class="timeline">
@@ -32,38 +32,38 @@
                 <ul>
                     <li>
                         <h2>Vercel</h2>
-                        <h3>Staff Product Designer</h3>
-                        <p>2024 &ndash; 2026</p>
+                        <h3>Staff Designer</h3>
+                        <p>Current</p>
                     </li>
                     <li>
                         <h2>Hiatus</h2>
                         <h3>Adventure &amp; Travel</h3>
-                        <p>2023 &ndash; 2024</p>
+                        <p>2023&ndash;2024</p>
                     </li>
                     <li>
                         <h2>Modern Treasury</h2>
-                        <h3>Staff Product Designer</h3>
-                        <p>2022 &ndash; 2023</p>
+                        <h3>Staff Designer</h3>
+                        <p>2022&ndash;2023</p>
                     </li>
                     <li>
                         <h2>Okta</h2>
-                        <h3>Staff Product Designer</h3>
-                        <p>2021 &ndash; 2022</p>
+                        <h3>Staff Designer</h3>
+                        <p>2021&ndash;2022</p>
                     </li>
                     <li>
                         <h2>Mozilla</h2>
-                        <h3>Senior Product Designer</h3>
-                        <p>2018 &ndash; 2021</p>
+                        <h3>Senior Designer</h3>
+                        <p>2018&ndash;2021</p>
                     </li>
                     <li>
                         <h2>Automattic</h2>
-                        <h3>Product Designer</h3>
-                        <p>2013 &ndash; 2017</p>
+                        <h3>Design Engineer</h3>
+                        <p>2013&ndash;2017</p>
                     </li>
                     <li>
                         <h2>Readmill</h2>
-                        <h3>Founding Designer</h3>
-                        <p>2012 &ndash; 2013</p>
+                        <h3>Product Designer</h3>
+                        <p>2012&ndash;2013</p>
                     </li>
                 </ul>
             </section>
@@ -77,9 +77,98 @@
                     my free time is spent outside on two wheels of some kind
                     exploring the rolling foothills of the Southeast, buried in
                     a book — most likely something from P.G. Wodehouse — or
-                    trying to improve my improvisational chops on bass.
+                    working to improve my improvisational chops on bass.
                 </p>
             </section>
         </div>
+        <script>
+            // Hide cascade targets before first paint (skipped for reduced motion)
+            const cascade = document.querySelectorAll(
+                ".intro p, .wrapper header, .timeline li, .enrichment p"
+            );
+            const reduceMotion = matchMedia(
+                "(prefers-reduced-motion: reduce)"
+            ).matches;
+            if (!reduceMotion) {
+                cascade.forEach((el) => (el.style.opacity = "0"));
+            }
+            const reveal = () =>
+                cascade.forEach((el) => (el.style.opacity = ""));
+        </script>
+        <script
+            src="https://cdn.jsdelivr.net/npm/motion@14.3.0/dist/motion.min.js"
+            onerror="reveal()"
+        ></script>
+        <script>
+            // Wrap each word of a paragraph in an inline-block span, keeping
+            // nested markup like <strong> intact
+            const wrapWords = (node, words) => {
+                [...node.childNodes].forEach((child) => {
+                    if (child.nodeType === Node.ELEMENT_NODE) {
+                        wrapWords(child, words);
+                        return;
+                    }
+                    if (child.nodeType !== Node.TEXT_NODE) return;
+                    const fragment = document.createDocumentFragment();
+                    child.textContent.split(/(\s+)/).forEach((part) => {
+                        if (!part) return;
+                        if (/^\s+$/.test(part)) {
+                            fragment.append(part);
+                            return;
+                        }
+                        const word = document.createElement("span");
+                        word.textContent = part;
+                        word.style.display = "inline-block";
+                        fragment.append(word);
+                        words.push(word);
+                    });
+                    child.replaceWith(fragment);
+                });
+            };
+
+            // Group a paragraph's words into visual lines by vertical position
+            const splitLines = (el) => {
+                const words = [];
+                wrapWords(el, words);
+                const lines = [];
+                let top = null;
+                words.forEach((word) => {
+                    if (word.offsetTop !== top) {
+                        top = word.offsetTop;
+                        lines.push([]);
+                    }
+                    lines[lines.length - 1].push(word);
+                });
+                return lines;
+            };
+
+            if (!reduceMotion && window.Motion) {
+                const { animate } = Motion;
+                // Measure lines after Geist loads so breaks match the final layout
+                document.fonts.ready.then(() => {
+                    const lines = [];
+                    cascade.forEach((el) => {
+                        if (el.tagName !== "P") {
+                            lines.push([el]);
+                            return;
+                        }
+                        splitLines(el).forEach((line) => {
+                            line.forEach((word) => (word.style.opacity = "0"));
+                            lines.push(line);
+                        });
+                        el.style.opacity = "";
+                    });
+                    lines.forEach((line, i) => {
+                        animate(
+                            line,
+                            { opacity: [0, 1], y: [8, 0] },
+                            { duration: 0.5, delay: i * 0.05, ease: "easeOut" }
+                        );
+                    });
+                });
+            } else {
+                reveal();
+            }
+        </script>
     </body>
 </html>
