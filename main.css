@@ -159,13 +159,6 @@ body .wrapper .timeline ul li h3 {
   text-overflow: ellipsis;
   color: rgba(255, 255, 255, 0.69);
 }
-body .wrapper .timeline ul li p {
-  width: 100%;
-  font-family: var(--mono);
-  font-variant-numeric: oldstyle-nums;
-  text-align: right;
-  color: rgba(255, 255, 255, 0.69);
-}
 body .wrapper .enrichment header h2 {
   font-family: var(--mono);
   font-weight: 600;
