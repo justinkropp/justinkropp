@@ -63,39 +63,16 @@ select {
     font: inherit;
 }
 
-p,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-    overflow-wrap: break-word;
-}
-
-p,
-li {
+p {
     font-family: var(--mono);
     text-wrap: pretty;
     font-size: .9rem;
-    line-height: 1.5;
+    font-weight: 500;
+    line-height: 1;
+    color: rgba(255, 255, 255, 0.9);
+    overflow-wrap: break-word;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-    text-wrap: balance;
-    font-size: .9rem;
-    font-weight: 600;
-    line-height: 1.5;
-}
-
-strong {
-    font-weight: 600;
-}
 
 #root,
 #__next {
@@ -105,80 +82,45 @@ strong {
 // Base
 
 body {
-    display: flex;
+    width: 100%;
+    height: 100%;
     margin: 0;
-    padding: 4em;
+    padding: 2em;
     background: var(--black);
     .wrapper {
         display: flex;
-        flex-direction: column;
-        gap: 3em;
-        max-width: 40em;
-        margin: auto;
+        width: 100%;
+        height: 100%;
         section {
-            display: flex;
-            flex-direction: column;
+            width: 100%;
+            height: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1fr 1fr;
             gap: 1em;
-            p {
-                font-family: var(--mono);
-                color: rgba(255, 255, 255, 0.69);
-                strong {
-                    font-weight: 600;
-                    color: rgba(255, 255, 255, 0.99);
-                }
-                em {
-                    font-family: var(--mono);
-                }
-            }
-        }
-        .timeline {
-            header {
-                h2 {
-                    font-family: var(--mono);
-                    color: rgba(255, 255, 255, 0.99);
-                }
-            }
-            ul {
-                list-style: none;
+            article {
                 display: flex;
-                flex-direction: column;
-                padding: 0;
-                li {
-                    display: flex;
-                    align-items: baseline;
-                    padding: 0.25em 0;
-                    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-                    &:last-child {
-                        border-bottom: none;
-                    }
-                    h2 {
-                        width: 100%;
-                        white-space: nowrap;
-                        overflow: hidden;
-                        text-overflow: ellipsis;
-                        font-weight: 600;
-                        color: rgba(255, 255, 255, 0.99);
-                    }
-                    h3 {
-                        width: 100%;
-                        font-family: var(--mono);
-                        white-space: nowrap;
-                        overflow: hidden;
-                        text-overflow: ellipsis;
-                        color: rgba(255, 255, 255, 0.69);
+                &:nth-child(1) {
+                    justify-content: flex-start;
+                }
+                &:nth-child(2) {
+                    justify-content: flex-end;
+                    p {
+                        align-self: flex-start;
+                        text-align: right;
                     }
                 }
-            }
-        }
-        .enrichment {
-            header {
-                h2 {
-                    font-family: var(--mono);
-                    font-weight: 600;
-                    color: rgba(255, 255, 255, 0.99);
+                &:nth-child(3) {
+                    p {
+                        align-self: flex-end;
+                    }
                 }
-                p {
-                    color: rgba(255, 255, 255, 0.69);
+                &:nth-child(4) {
+                    justify-content: flex-end;
+                    p {
+                        align-self: flex-end;
+                        text-align: right;
+                    }
                 }
             }
         }
