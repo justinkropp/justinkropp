@@ -1,19 +1,19 @@
 // Fonts
 
-@font-face {
-  font-family: "Geist Mono";
-  src: url("fonts/GeistMono-Variable.woff2") format("woff2");
-  font-weight: 100 900;
-  font-style: normal;
-  font-display: swap;
-}
+// @font-face {
+//   font-family: "Geist Mono";
+//   src: url("fonts/GeistMono-Variable.woff2") format("woff2");
+//   font-weight: 100 900;
+//   font-style: normal;
+//   font-display: swap;
+// }
 
 // Variables
 
 :root {
     --black: rgba(0, 0, 0, 0.99);
     --white: rgba(255, 255, 255, 0.99);
-    --mono: "Geist Mono";
+    --sans: 'Helvetica';
 }
 
 ::selection {
@@ -64,12 +64,11 @@ select {
 }
 
 p {
-    font-family: var(--mono);
+    font-family: var(--sans);
     text-wrap: pretty;
-    font-size: .9rem;
-    font-weight: 500;
-    line-height: 1;
-    color: rgba(255, 255, 255, 0.9);
+    font-size: 1.55rem;
+    font-weight: 600;
+    line-height: 1.25;
     overflow-wrap: break-word;
 }
 
@@ -85,42 +84,30 @@ body {
     width: 100%;
     height: 100%;
     margin: 0;
-    padding: 2em;
-    background: var(--black);
+    padding: 1em;
+    background: #3A0000;
     .wrapper {
         display: flex;
         width: 100%;
         height: 100%;
         section {
             width: 100%;
-            height: 100%;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            grid-template-rows: 1fr 1fr;
-            gap: 1em;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
             article {
+                max-width: 48em;
+                width: 100%;
                 display: flex;
-                &:nth-child(1) {
-                    justify-content: flex-start;
+                flex-direction: column;
+                align-items: center;
+                gap: 1em;
+                p {
+                    color: #FF3D00;
                 }
-                &:nth-child(2) {
-                    justify-content: flex-end;
-                    p {
-                        align-self: flex-start;
-                        text-align: right;
-                    }
-                }
-                &:nth-child(3) {
-                    p {
-                        align-self: flex-end;
-                    }
-                }
-                &:nth-child(4) {
-                    justify-content: flex-end;
-                    p {
-                        align-self: flex-end;
-                        text-align: right;
-                    }
+                p:nth-child(2) {
+                    font-size: 1rem;
                 }
             }
         }

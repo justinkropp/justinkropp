@@ -8,67 +8,11 @@
     <body>
         <div class="wrapper">
             <section>
-                <article><p>Justin Kropp</p></article>
-                <article><p>Designer</p></article>
-                <article><p>Motorcyclist</p></article>
-                <article><p>Musician</p></article>
+                <article>
+                    <p>I am, depending on the day and who is asking, a product designer, a musician, a Graphic Designer, an identical twin, a motorcyclist, a photographer, a fledgling writer, a contrarian, and &mdash; a development I find increasingly congenial &mdash; an outsider. None of these labels, taken individually, does the full job. Taken together, however, they account for a reasonably accurate outline of whatever it is that one means when one says <em>I</em>.</p>
+                    <p>I don't maintain an online portfolio, nor am I active on social media. My free time is spent reading, playing music, and exploring the world on two wheels. </p>
+                </article>
             </section>
         </div>
-        <script>
-            // Fade and scramble each corner word in, one after another
-            // (skipped for reduced motion)
-            const words = document.querySelectorAll(".wrapper article p");
-            const reduceMotion = matchMedia(
-                "(prefers-reduced-motion: reduce)"
-            ).matches;
-
-            const GLYPHS = "abcdefghijklmnopqrstuvwxyz0123456789{}!*^#$&%')";
-            const TICK = 33; // ms between scrambles; one character locks per tick
-            // ms between each corner starting: top left, top right, bottom left,
-            // bottom right (the order of the articles in the markup)
-            const STAGGER = 250;
-            const randomGlyph = () =>
-                GLYPHS[Math.floor(Math.random() * GLYPHS.length)];
-
-            // Cycle random glyphs, locking in the real text left to right
-            const scramble = (el) => {
-                const text = el.textContent;
-                let locked = 0;
-                const render = () => {
-                    el.textContent = [...text]
-                        .map((char, i) =>
-                            i < locked || char === " " ? char : randomGlyph()
-                        )
-                        .join("");
-                };
-                render();
-                const timer = setInterval(() => {
-                    locked++;
-                    render();
-                    if (locked >= text.length) clearInterval(timer);
-                }, TICK);
-            };
-
-            if (!reduceMotion) {
-                // Hide before first paint, then animate once Geist Mono is ready
-                words.forEach((el) => {
-                    el.setAttribute("aria-label", el.textContent);
-                    el.style.opacity = "0";
-                });
-                document.fonts.ready.then(() => {
-                    words.forEach((el, i) => {
-                        // fill: backwards keeps it hidden during the delay
-                        el.animate([{ opacity: 0 }, { opacity: 1 }], {
-                            duration: 300,
-                            delay: i * STAGGER,
-                            easing: "linear",
-                            fill: "backwards",
-                        });
-                        el.style.opacity = "";
-                        setTimeout(() => scramble(el), i * STAGGER);
-                    });
-                });
-            }
-        </script>
     </body>
 </html>
